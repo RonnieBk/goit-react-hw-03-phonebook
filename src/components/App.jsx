@@ -10,6 +10,29 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    try {
+      const savedContacts = localStorage.getItem('contacts');
+      const checkContacts =
+        savedContacts === null ? undefined : JSON.parse(savedContacts);
+      this.setState({
+        contacts: checkContacts,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState !== this.state.contacts) {
+      try {
+        localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+
   handleChange = evt => {
     const { value } = evt.target;
     this.setState({ filter: value });
