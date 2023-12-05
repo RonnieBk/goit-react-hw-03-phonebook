@@ -3,13 +3,13 @@ import { ContactListElement } from './ContactListElement';
 import PropTypes from 'prop-types';
 
 export const ContactList = ({ contacts, filterValue, onClick }) => {
-  if (contacts.length > 0) {
-    const searchContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterValue.toLowerCase())
-    );
-    return (
-      <ul className={css.list}>
-        {searchContacts.map(contact => (
+  return (
+    <ul className={css.list}>
+      {contacts
+        .filter(contact =>
+          contact.name.toLowerCase().includes(filterValue.toLowerCase())
+        )
+        .map(contact => (
           <ContactListElement
             key={contact.id}
             id={contact.id}
@@ -18,9 +18,8 @@ export const ContactList = ({ contacts, filterValue, onClick }) => {
             onClick={onClick}
           />
         ))}
-      </ul>
-    );
-  }
+    </ul>
+  );
 };
 
 ContactList.propTypes = {
