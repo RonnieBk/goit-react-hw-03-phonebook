@@ -3,7 +3,7 @@ import { ContactListElement } from './ContactListElement';
 import PropTypes from 'prop-types';
 
 export const ContactList = ({ contacts, filterValue, onClick }) => {
-  if (contacts.length) {
+  if (contacts.length > 0) {
     const searchContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filterValue.toLowerCase())
     );
