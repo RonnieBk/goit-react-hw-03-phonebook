@@ -14,7 +14,7 @@ export class App extends Component {
     try {
       const savedContacts = localStorage.getItem('contacts');
       const checkContacts =
-        savedContacts === null ? undefined : JSON.parse(savedContacts);
+        savedContacts === null ? [] : JSON.parse(savedContacts);
       this.setState({
         contacts: checkContacts,
       });
