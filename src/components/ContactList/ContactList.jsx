@@ -3,22 +3,24 @@ import { ContactListElement } from './ContactListElement';
 import PropTypes from 'prop-types';
 
 export const ContactList = ({ contacts, filterValue, onClick }) => {
-  const searchContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filterValue.toLowerCase())
-  );
-  return (
-    <ul className={css.list}>
-      {searchContacts.map(contact => (
-        <ContactListElement
-          key={contact.id}
-          id={contact.id}
-          name={contact.name}
-          number={contact.number}
-          onClick={onClick}
-        />
-      ))}
-    </ul>
-  );
+  if (contacts.length) {
+    const searchContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterValue.toLowerCase())
+    );
+    return (
+      <ul className={css.list}>
+        {searchContacts.map(contact => (
+          <ContactListElement
+            key={contact.id}
+            id={contact.id}
+            name={contact.name}
+            number={contact.number}
+            onClick={onClick}
+          />
+        ))}
+      </ul>
+    );
+  }
 };
 
 ContactList.propTypes = {
